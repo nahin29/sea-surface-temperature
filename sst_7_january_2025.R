@@ -47,11 +47,7 @@ ggplot() +
 
 
 
-
-
-
-# Load the necessary library
-library(terra)
+# function to extract the ocean data from the main dataset
 
 # Define the function to extract ocean data
 extract_ocean_data <- function(raster_data, xmin, xmax, ymin, ymax) {
@@ -66,6 +62,8 @@ extract_ocean_data <- function(raster_data, xmin, xmax, ymin, ymax) {
   
   return(ocean_df)
 }
+
+# extract the major ocean
 
 #Indian Ocean region (20-150 longitude, -30 to 30 latitude)
 indian_ocean_df <- extract_ocean_data(sst_4jan_2025_df, 20, 150, -30, 30)
@@ -84,15 +82,10 @@ southern_ocean_df <- extract_ocean_data(sst_4jan_2025_df, -180, 180, -90, -60)
 
 
 
-
-
-
-
-
-
 library(ggplot2)
 library(sf)
 
+#change your ocean name
 indian = ggplot() +
   geom_raster(data = indian_ocean_df, aes(x = x, y = y, fill = sst_celsius), interpolate = TRUE) +
   geom_sf(data = world, fill = "gray20", color = "black", size = 0.1) +  # Add the world map
@@ -128,5 +121,4 @@ indian = ggplot() +
   )
 
 
-southern
 
