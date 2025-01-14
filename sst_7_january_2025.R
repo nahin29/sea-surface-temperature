@@ -1,5 +1,8 @@
 library(terra)
 library(tidyterra)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(sf)
 library(showtext)
 
 # Load a Google Font (e.g., "Roboto")
@@ -8,6 +11,9 @@ font_add_google("Roboto", family = "Roboto")
 # Register the font
 showtext_auto()
 
+
+# Get world map for geographic context
+world <- ne_countries(scale = "small", returnclass = "sf")
 
 sst_4jan_2025 = rast("C:/Users/nahin/OneDrive/Desktop/7_1_2025_sst.nc")
 
